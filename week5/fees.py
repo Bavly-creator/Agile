@@ -1,45 +1,47 @@
 """Tuition fee calculation for the Student Services App."""
 
 
-def calc(d, t, s, disc, extra=[]):
-    # t: 1=student, 2=staff child, 3=scholarship
+def tuition_fee(courses, student_type, summer, discount, extra=[]):
+    """Calculate the tuition fee for one student."""
     total = 0
-    for c in d:
-        if t == 1:
-            total = total + c["h"] * 350
-        elif t == 2:
-            total = total + c["h"] * 350 * 0.5
-        elif t == 3:
+    for course in courses:
+        if student_type == 1:
+            total = total + course["h"] * 350
+        elif student_type == 2:
+            total = total + course["h"] * 350 * 0.5
+        elif student_type == 3:
             total = total + 0
 
     if total > 6000:
         total = total - 200
-    if s == True:
+    if summer == True:
         total = total + 150
-    if disc != None:
-        total = total - disc
+    if discount != None:
+        total = total - discount
 
-    for e in extra:
-        total = total + e
+    for extra_fee in extra:
+        total = total + extra_fee
 
     return total
 
 
-def report(d, t, s, disc):
-    x = calc(d, t, s, disc)
-    if t == 1:
-        print("Student fee: " + str(x))
-    elif t == 2:
-        print("Staff child fee: " + str(x))
-    if x > 6000:
+def report(courses, student_type, summer, discount):
+    """Print a fee report."""
+    fee = tuition_fee(courses, student_type, summer, discount)
+    if student_type == 1:
+        print("Student fee: " + str(fee))
+    elif student_type == 2:
+        print("Staff child fee: " + str(fee))
+    if fee > 6000:
         print("High fee")
-    return x
+    return fee
 
 
-def ProcessAll(students):
-    for st in students:
-        if st["type"] == 1:
-            fee = calc(st["courses"], 1, st["summer"], None)
-        if st["type"] == 2:
-            fee = calc(st["courses"], 2, st["summer"], None)
-        print(st["name"], fee)
+def process_all(students):
+    """Process all regular and staff-child students."""
+    for student in students:
+        if student["type"] == 1:
+            fee = tuition_fee(student["courses"], 1, student["summer"], None)
+        if student["type"] == 2:
+            fee = tuition_fee(student["courses"], 2, student["summer"], None)
+        print(student["name"], fee)
