@@ -16,23 +16,23 @@ class StudentType(Enum):
     SCHOLARSHIP = 3
 
 
-def tuition_fee(courses, student_type, summer, discount, extra=[]):
-    """Calculate the tuition fee for one student."""
-    total = 0
+RATE_SHARE = {
+    StudentType.REGULAR: 1,
+    StudentType.STAFF_CHILD: 0.5,
+    StudentType.SCHOLARSHIP: 0,
+}
 
-    for course in courses:
-        if student_type == StudentType.REGULAR:
-            total += course["h"] * RATE_PER_HOUR
-        elif student_type == StudentType.STAFF_CHILD:
-            total += course["h"] * RATE_PER_HOUR * 0.5
-        elif student_type == StudentType.SCHOLARSHIP:
-            total += 0
+
+def tuition_fee(courses, student_type, summer=False, discount=0, extra=[]):
+    """Calculate the tuition fee for one student."""
+    total = sum(course["h"] for course in courses) * RATE_PER_HOUR
+    total *= RATE_SHARE[student_type]
 
     if total > HIGH_FEE_LIMIT:
         total -= HIGH_FEE_REDUCTION
-    if summer == True:
+    if summer:
         total += SUMMER_SURCHARGE
-    if discount != None:
+    if discount is not None:
         total -= discount
 
     for extra_fee in extra:
@@ -41,7 +41,7 @@ def tuition_fee(courses, student_type, summer, discount, extra=[]):
     return total
 
 
-def report(courses, student_type, summer, discount):
+def report(courses, student_type, summer=False, discount=0):
     """Print a fee report."""
     fee = tuition_fee(courses, student_type, summer, discount)
     if student_type == StudentType.REGULAR:
@@ -57,9 +57,11 @@ def process_all(students):
     """Process regular and staff-child students."""
     for student in students:
         if student["type"] == StudentType.REGULAR:
-            fee = tuition_fee(student["courses"], StudentType.REGULAR,
-                              student["summer"], None)
+            fee = tuition_fee(
+                student["courses"], StudentType.REGULAR, student["summer"]
+            )
         if student["type"] == StudentType.STAFF_CHILD:
-            fee = tuition_fee(student["courses"], StudentType.STAFF_CHILD,
-                              student["summer"], None)
+            fee = tuition_fee(
+                student["courses"], StudentType.STAFF_CHILD, student["summer"]
+            )
         print(student["name"], fee)
