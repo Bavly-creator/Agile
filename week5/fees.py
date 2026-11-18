@@ -1,5 +1,6 @@
 """Tuition fee calculation for the Student Services App."""
 
+from dataclasses import dataclass
 from enum import Enum
 
 RATE_PER_HOUR = 350
@@ -23,22 +24,25 @@ RATE_SHARE = {
 }
 
 
-def tuition_fee(courses, student_type, summer=False, discount=0, extra=[]):
+@dataclass(frozen=True)
+class Course:
+    """A course the student registered for."""
+
+    hours: int
+
+
+def tuition_fee(courses, student_type, summer=False, discount=0, extras=()):
     """Calculate the tuition fee for one student."""
-    total = sum(course["h"] for course in courses) * RATE_PER_HOUR
+    total = sum(course.hours for course in courses) * RATE_PER_HOUR
     total *= RATE_SHARE[student_type]
 
     if total > HIGH_FEE_LIMIT:
         total -= HIGH_FEE_REDUCTION
     if summer:
         total += SUMMER_SURCHARGE
-    if discount is not None:
-        total -= discount
+    total -= discount
 
-    for extra_fee in extra:
-        total += extra_fee
-
-    return total
+    return total + sum(extras)
 
 
 def report(courses, student_type, summer=False, discount=0):
