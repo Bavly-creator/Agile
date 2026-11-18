@@ -23,6 +23,11 @@ RATE_SHARE = {
     StudentType.SCHOLARSHIP: 0,
 }
 
+TYPE_LABELS = {
+    StudentType.REGULAR: "Student fee",
+    StudentType.STAFF_CHILD: "Staff child fee",
+}
+
 
 @dataclass(frozen=True)
 class Course:
@@ -45,16 +50,17 @@ def tuition_fee(courses, student_type, summer=False, discount=0, extras=()):
     return total + sum(extras)
 
 
-def report(courses, student_type, summer=False, discount=0):
-    """Print a fee report."""
+def fee_report(courses, student_type, summer=False, discount=0):
+    """Return a text report for one student."""
     fee = tuition_fee(courses, student_type, summer, discount)
-    if student_type == StudentType.REGULAR:
-        print("Student fee: " + str(fee))
-    elif student_type == StudentType.STAFF_CHILD:
-        print("Staff child fee: " + str(fee))
+    lines = []
+
+    if student_type in TYPE_LABELS:
+        lines.append(f"{TYPE_LABELS[student_type]}: {fee}")
     if fee > HIGH_FEE_LIMIT:
-        print("High fee")
-    return fee
+        lines.append("High fee")
+
+    return "\n".join(lines)
 
 
 def process_all(students):
