@@ -1,0 +1,8 @@
+[tool.ruff.lint]
+select = ["E", "F", "B", "N", "SIM", "C90", "PLR", "ARG"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+[tool.ruff.lint.per-file-ignores]
+"test_*.py" = ["PLR2004"]
