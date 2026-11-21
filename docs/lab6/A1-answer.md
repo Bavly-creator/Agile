@@ -1,13 +1,18 @@
-# Task A1 — Coverage
+# Task A1 — Test Coverage
 
-Report (`python -m pytest --cov=registration --cov-report=term-missing`):
+Run from the `lab6/` directory:
+
+```bash
+python -m pytest tests --cov=registration --cov-report=term-missing
+```
+
+Verified result from the Bavly implementation:
 
 | Name | Stmts | Miss | Cover |
-|---|---|---|---|
+|---|---:|---:|---:|
 | registration.py | 20 | 0 | 100% |
+| TOTAL | 20 | 0 | 100% |
 
-Screenshot: `coverage_100.svg` (same folder).
+**Does 100% coverage prove the code is correct?** No. It only means every executable line was run by the tests; it does not prove that the tests check the correct behaviour or cover every possible input.
 
-**Does 100% coverage prove the code is correct?**
-No. 100% only means every line was executed by some test. It does not prove that the tests check the right
-behaviour or that every input is covered (for example, negative hours are never tested).
+**Screenshot evidence:** Save a genuine terminal screenshot showing the command and its 100% coverage result as `docs/lab6/coverage-100-percent.png`. Do not use the old recreated SVG as a terminal screenshot.
