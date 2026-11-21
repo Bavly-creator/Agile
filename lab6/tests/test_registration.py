@@ -15,3 +15,10 @@ def test_cannot_go_over_18_hours():
     with pytest.raises(RegistrationError):
         s.register("SET472", 4)
     assert s.total_hours == 15
+
+
+def test_cannot_register_same_course_twice():
+    s = Student("2023001")
+    s.register("SET312", 3)
+    with pytest.raises(RegistrationError):
+        s.register("SET312", 3)
