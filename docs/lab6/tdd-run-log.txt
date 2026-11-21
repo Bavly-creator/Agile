@@ -1,0 +1,86 @@
+commit: chore: lab6 setup
+--- cycle 1 RED
+$ python -m pytest -q  [red]
+ERROR tests/test_registration.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.07s
+--- cycle 1 GREEN
+$ python -m pytest -q  [green]
+.                                                                        [100%]
+1 passed in 0.00s
+commit: test: rule 1 register adds hours
+--- cycle 2 RED
+$ python -m pytest -q  [red]
+=========================== short test summary info ============================
+FAILED tests/test_registration.py::test_cannot_go_over_18_hours - Failed: DID...
+1 failed, 1 passed in 0.01s
+--- cycle 2 GREEN
+$ python -m pytest -q  [green]
+..                                                                       [100%]
+2 passed in 0.01s
+commit: test: rule 2 18-hour limit
+--- cycle 3 RED
+$ python -m pytest -q  [red]
+=========================== short test summary info ============================
+FAILED tests/test_registration.py::test_cannot_register_same_course_twice - F...
+1 failed, 2 passed in 0.01s
+--- cycle 3 GREEN
+$ python -m pytest -q  [green]
+...                                                                      [100%]
+3 passed in 0.01s
+commit: test: rule 3 no duplicate course
+--- cycle 4 RED
+$ python -m pytest -q  [red]
+=========================== short test summary info ============================
+FAILED tests/test_registration.py::test_drop_removes_course - AttributeError:...
+1 failed, 3 passed in 0.02s
+--- cycle 4 GREEN
+$ python -m pytest -q  [green]
+....                                                                     [100%]
+4 passed in 0.01s
+commit: test: rule 4 drop course
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.13.18-final-0 _______________
+
+Name              Stmts   Miss  Cover   Missing
+-----------------------------------------------
+registration.py      20      0   100%
+-----------------------------------------------
+TOTAL                20      0   100%
+============================== 5 passed in 0.04s ===============================
+commit: test: A1 drop unregistered course, coverage 100%
+commit: chore: add legacy_invoice.py and its copy invoice.py (unchanged)
+--- characterization on LEGACY code
+........                                                                 [100%]
+8 passed in 0.02s
+commit: test: characterization tests for legacy invoice
+--- v2 names
+........                                                                 [100%]
+8 passed in 0.01s
+commit: refactor: name the magic numbers
+--- v3 policies
+........                                                                 [100%]
+8 passed in 0.01s
+commit: refactor: one policy class per fee rule (SRP)
+--- v4 lookup
+........                                                                 [100%]
+8 passed in 0.01s
+commit: refactor: POLICIES lookup replaces if/elif (OCP)
+--- writer test RED
+=========================== short test summary info ============================
+FAILED tests/test_invoice_characterization.py::test_invoice_uses_injected_writer
+1 failed, 8 passed in 0.02s
+commit: test: invoice must use an injected writer (red)
+--- v5 writer GREEN
+.........                                                                [100%]
+9 passed in 0.02s
+commit: refactor: inject the file writer (DIP)
+--- sibling RED
+=========================== short test summary info ============================
+FAILED tests/test_invoice_characterization.py::test_sibling_discount_is_25_percent_off_regular
+1 failed, 9 passed in 0.03s
+commit: test: C2 sibling discount 25% (red)
+--- sibling GREEN
+..........                                                               [100%]
+10 passed in 0.02s
+commit: feat: C2 SiblingPolicy (green)
