@@ -26,11 +26,15 @@ POLICIES = {
 }
 
 
-def make_invoice(student, kind):
+class FileWriter:
+    def write(self, student_id, text):
+        with open(f"invoice_{student_id}.txt", "w") as f:
+            f.write(text)
+
+
+def make_invoice(student, kind, writer=None):
     policy = POLICIES[kind]
     total = policy.fee(student.total_hours)
     text = f"Invoice for {student.student_id}: {int(total)} EGP"
-    with open(f"invoice_{student.student_id}.txt", "w") as f:
-        f.write(text)
-    print(text)
+    (writer or FileWriter()).write(student.student_id, text)
     return total
