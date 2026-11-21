@@ -1,0 +1,26 @@
+class RegistrationError(Exception):
+    pass
+
+
+class Student:
+    MAX_HOURS = 18
+
+    def __init__(self, student_id):
+        self.student_id = student_id
+        self.courses = {}
+
+    @property
+    def total_hours(self):
+        return sum(self.courses.values())
+
+    def register(self, code, hours):
+        if code in self.courses:
+            raise RegistrationError(f"{code} is already registered")
+        if self.total_hours + hours > self.MAX_HOURS:
+            raise RegistrationError("credit-hour limit is 18")
+        self.courses[code] = hours
+
+    def drop(self, code):
+        if code not in self.courses:
+            raise RegistrationError(f"{code} is not registered")
+        del self.courses[code]
