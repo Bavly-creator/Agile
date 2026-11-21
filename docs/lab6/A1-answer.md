@@ -6,7 +6,7 @@ Report (`python -m pytest --cov=registration --cov-report=term-missing`):
 |---|---|---|---|
 | registration.py | 20 | 0 | 100% |
 
-Screenshot: `coverage_100.png` (same folder).
+Screenshot: `coverage_100.svg` (same folder).
 
 **Does 100% coverage prove the code is correct?**
 No. 100% only means every line was executed by some test. It does not prove that the tests check the right
