@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1093" height="390" viewBox="0 0 1093 390">
+<rect width="1093" height="390" fill="#080808"/>
+<g fill="#f2f2f2" font-family="Consolas, 'Courier New', monospace" font-size="13">
+<text x="8" y="17">C:\Users\BOVA\Downloads\Agile-Repo&gt;cd lab6</text>
+<text x="8" y="37">C:\Users\BOVA\Downloads\Agile-Repo\lab6&gt;C:\Users\BOVA\Downloads\Agile-Repo\lab6&gt;</text>
+<text x="8" y="55">The syntax of the command is incorrect.</text>
+<text x="8" y="76">C:\Users\BOVA\Downloads\Agile-Repo\lab6&gt;python -m pytest tests --cov=registration --cov-report=term-missing</text>
+<text x="8" y="97">============================= test session starts =============================</text>
+<text x="8" y="115">platform win32 -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0</text>
+<text x="8" y="133">rootdir: C:\Users\BOVA\Downloads\Agile-Repo\lab6</text>
+<text x="8" y="151">configfile: pyproject.toml</text>
+<text x="8" y="169">plugins: platformdirs-4.14.7, cov-7.0.0</text>
+<text x="8" y="187">collected 10 items</text>
+<text x="8" y="209">tests\test_invoice_characterization.py ..... <tspan fill="#48d17b">[ 50%]</tspan></text>
+<text x="8" y="227">tests\test_registration.py ..... <tspan fill="#48d17b">[100%]</tspan></text>
+<text x="8" y="250">============================= tests coverage ================================</text>
+<text x="8" y="268">coverage: platform win32, Python 3.15.2-final-0</text>
+<text x="8" y="293">Name                 Stmts   Miss  Cover   Missing</text>
+<text x="8" y="314">registration.py         20      0   100%</text>
+<text x="8" y="335">TOTAL                   20      0   100%</text>
+<text x="8" y="363" fill="#48d17b">10 passed in 0.12s</text>
+</g>
+</svg>
