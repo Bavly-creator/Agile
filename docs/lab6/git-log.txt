@@ -1,0 +1,24 @@
+# Lab 6 commit history
+
+Branch: `lab6-bavly`
+Command represented: `git log --oneline -17`
+
+```text
+1db4581 docs: C1 code smells table
+6a5aee7 docs: lab6 report and TDD run log
+7defb4d feat: C2 SiblingPolicy (green)
+446e023 test: C2 sibling discount 25% (red)
+b37360a refactor: inject the file writer (DIP)
+0dc47bf test: invoice must use an injected writer (red)
+a209b93 refactor: POLICIES lookup replaces if/elif (OCP)
+7a4d3aa refactor: one policy class per fee rule (SRP)
+4ccc8b4 refactor: name the magic numbers
+eb05b05 test: characterization tests for legacy invoice
+bdddc8a chore: add legacy_invoice.py and its copy invoice.py (unchanged)
+b96d23e test: A1 drop unregistered course, coverage 100%
+a5252af test: rule 4 drop course
+95918b9 test: rule 3 no duplicate course
+85121d4 test: rule 2 18-hour limit
+b202c6d test: rule 1 register adds hours
+409640a chore: lab6 setup
+```
