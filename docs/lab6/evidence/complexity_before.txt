@@ -1,0 +1,3 @@
+SUPPLIED ARCHIVE OUTPUT
+
+C901 make_invoice is too complex (6 > 1)

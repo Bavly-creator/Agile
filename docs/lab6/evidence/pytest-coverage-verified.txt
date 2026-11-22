@@ -1,0 +1,14 @@
+FRESH VERIFICATION OF THE UPLOADED ARCHIVE CONTENTS
+
+Command: python -m pytest -q --cov=registration --cov-report=term-missing
+
+..........                                                               [100%]
+Name              Stmts   Miss  Cover   Missing
+-----------------------------------------------
+registration.py      20      0  100%
+-----------------------------------------------
+TOTAL                20      0  100%
+
+10 passed.
+
+This is a fresh run of the uploaded archive's code in the available execution environment. It is not a screenshot from the student's computer.

@@ -1,0 +1,3 @@
+SUPPLIED ARCHIVE OUTPUT
+
+All checks passed!

@@ -1,0 +1,8 @@
+SUPPLIED ARCHIVE OUTPUT
+
+Name              Stmts   Miss  Cover   Missing
+-----------------------------------------------
+registration.py      20      0  100%
+-----------------------------------------------
+TOTAL                20      0  100%
+5 passed in 0.04s
