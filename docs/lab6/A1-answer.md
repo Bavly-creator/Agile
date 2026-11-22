@@ -6,7 +6,7 @@ Run from the `lab6/` directory:
 python -m pytest tests --cov=registration --cov-report=term-missing
 ```
 
-Verified result from the Bavly implementation:
+Verified result from the submitted implementation:
 
 | Name | Stmts | Miss | Cover |
 |---|---:|---:|---:|
@@ -15,4 +15,4 @@ Verified result from the Bavly implementation:
 
 **Does 100% coverage prove the code is correct?** No. It only means every executable line was run by the tests; it does not prove that the tests check the correct behaviour or cover every possible input.
 
-**Screenshot evidence:** Save a genuine terminal screenshot showing the command and its 100% coverage result as `docs/lab6/coverage-100-percent.png`. Do not use the old recreated SVG as a terminal screenshot.
+**Screenshot evidence:** The original `coverage_100.png` screenshot is not currently in this repository. It is intentionally left pending at `docs/lab6/evidence/coverage_100.png`; add the genuine screenshot there when available. The text verification in `docs/lab6/evidence/pytest-coverage-verified.txt` is not a substitute for a screenshot.
