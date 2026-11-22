@@ -3,18 +3,21 @@
 Run everything from the `lab6/` folder: `python -m pytest -q` · `python -m behave` · `ruff check .`
 
 ## Part A — TDD and coverage (Task A1)
-Before: `registration.py` 95 %, line 26 missing (`coverage_before.txt`). New test
+Before: `registration.py` 95 %, line 26 missing (`evidence/coverage_before.txt`). New test
 `test_cannot_drop_course_that_is_not_registered` covers the "not registered" error → **100 %**
-(`coverage_after.txt`, `coverage_100.png`).
+(`evidence/coverage_after.txt`). The original terminal screenshot is expected at
+`evidence/coverage_100.png`; it is still pending.
 
 **Does 100 % coverage prove the code is correct?** No. It only shows every line was executed by some
 test; it does not prove the assertions check the right things or that all rules and inputs are
 covered (for example, negative or zero hours are never tested).
 
 ## Part B — BDD (Task B1)
-`lab6/features/registration.feature` now has 7 scenarios (the new one: *Drop a registered course*),
-and `features/steps/registration_steps.py` has the new `@when('the student drops "{code}"')` step.
-`behave_after.txt`: 1 feature passed, 7 scenarios passed, 28 steps passed.
+`lab6/features/registration.feature` contains 7 scenarios, including *Drop a registered course*,
+and `lab6/features/steps/registration_steps.py` contains the corresponding drop step.
+The supplied historical output is `evidence/behave_after.txt` (1 feature, 7 scenarios, 28 steps).
+It has not yet been freshly rerun on the consolidated branch; save a new actual run as
+`evidence/behave-rerun.txt` when verified.
 
 ## Part C — Refactoring legacy_invoice.py
 ### Task C1 — Smells found before touching the code (full table in `smells.md`)
@@ -29,23 +32,29 @@ and `features/steps/registration_steps.py` has the new `@when('the student drops
 | Unknown `kind` silently gives 0 EGP and still writes an invoice | no `else` branch | Hidden bug: no validation |
 
 ### Characterization tests first
-Run against the **unchanged** legacy code (`characterization_on_legacy.txt`): 8 passed
+Run against the **unchanged** legacy code (`evidence/characterization_on_legacy.txt`): 8 passed
 (regular 7200, scholarship 3600, international 17000 plus the registration tests).
-Ruff complexity of `make_invoice` before: **6** (`complexity_before.txt`).
+Ruff complexity of `make_invoice` before: **6** (`evidence/complexity_before.txt`).
 
 ### Refactoring (invoice.py)
 Named constants → one policy class per type (SRP) → `POLICIES` lookup (OCP) → injected writer (DIP).
-Complexity after: **1** (`complexity_after.txt`). `print` was removed from the calculation.
+Complexity after: **1** (`evidence/complexity_after.txt`). `print` was removed from the calculation.
 
 ### Task C2 — SiblingPolicy (test first)
-1. Red: `test_sibling_discount_is_25_percent_off_regular` fails with `KeyError: 'sibling'` (`sibling_red.txt`).
+1. Red: `test_sibling_discount_is_25_percent_off_regular` fails with `KeyError: 'sibling'` (`evidence/sibling_red.txt`).
 2. Green: added `SiblingPolicy` (25 % off the regular fee, 6 h → 5400) and one `POLICIES` entry.
-   `make_invoice` was **not changed**. 10 tests pass (`sibling_green.txt`).
+   `make_invoice` was **not changed**. 10 tests pass (`evidence/sibling_green.txt`).
 
 ## Part D — Gherkin scenarios for our team story
 Story **S11 Create a study group (AP-16)**, owner David Gerges: `team_story.feature` (3 scenarios:
 create a group and get a code, group name required, two groups never share a code).
 
-## Evidence in this folder
-`coverage_100.png`, `behave_green.png`, `git-log.txt`, `tdd-run-log.txt` (real red/green output of every cycle) (one commit per TDD cycle), `smells.md` (Task C1),
-`A1-answer.md`, `team_story.feature`.
+## Evidence paths
+All evidence files are stored in `docs/lab6/evidence/`:
+- Coverage reports: `coverage_before.txt`, `coverage_after.txt`, `pytest-coverage-verified.txt`.
+- Original coverage screenshot: `coverage_100.png` (**pending; do not replace with the SVG**).
+- Behave historical output: `behave_after.txt`; fresh rerun output: `behave-rerun.txt` (**pending**).
+- Other evidence: `characterization_on_legacy.txt`, `complexity_before.txt`, `complexity_after.txt`, `sibling_red.txt`, `sibling_green.txt`.
+- Root-level documentation: `git-log.txt`, `tdd-run-log.txt`, `smells.md`, `A1-answer.md`.
+
+See `TEAM-SUBMISSION-README.md` and `evidence/README.md` for submission status.
