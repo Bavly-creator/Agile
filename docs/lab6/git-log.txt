@@ -1,6 +1,6 @@
 # Lab 6 commit history
 
-Branch: `lab6-bavly`
+Branch: `lab6`
 Command represented: `git log --oneline -17`
 
 ```text
