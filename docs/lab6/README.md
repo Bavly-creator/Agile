@@ -5,8 +5,8 @@ Run everything from the `lab6/` folder: `python -m pytest -q` · `python -m beha
 ## Part A — TDD and coverage (Task A1)
 Before: `registration.py` 95 %, line 26 missing (`evidence/coverage_before.txt`). New test
 `test_cannot_drop_course_that_is_not_registered` covers the "not registered" error → **100 %**
-(`evidence/coverage_after.txt`). The original terminal screenshot is expected at
-`evidence/coverage_100.png`; it is still pending.
+(`evidence/coverage_after.txt`). The coverage screenshot is included at
+`evidence/coverage_100.png`.
 
 **Does 100 % coverage prove the code is correct?** No. It only shows every line was executed by some
 test; it does not prove the assertions check the right things or that all rules and inputs are
@@ -15,9 +15,8 @@ covered (for example, negative or zero hours are never tested).
 ## Part B — BDD (Task B1)
 `lab6/features/registration.feature` contains 7 scenarios, including *Drop a registered course*,
 and `lab6/features/steps/registration_steps.py` contains the corresponding drop step.
-The supplied historical output is `evidence/behave_after.txt` (1 feature, 7 scenarios, 28 steps).
-It has not yet been freshly rerun on the consolidated branch; save a new actual run as
-`evidence/behave-rerun.txt` when verified.
+The fresh run is saved as `evidence/behave-rerun.txt`: **1 feature, 7 scenarios and 28 steps passed;
+0 failed and 0 skipped**. The supplied historical output remains available as `evidence/behave_after.txt`.
 
 ## Part C — Refactoring legacy_invoice.py
 ### Task C1 — Smells found before touching the code (full table in `smells.md`)
@@ -52,8 +51,8 @@ create a group and get a code, group name required, two groups never share a cod
 ## Evidence paths
 All evidence files are stored in `docs/lab6/evidence/`:
 - Coverage reports: `coverage_before.txt`, `coverage_after.txt`, `pytest-coverage-verified.txt`.
-- Original coverage screenshot: `coverage_100.png` (**pending; do not replace with the SVG**).
-- Behave historical output: `behave_after.txt`; fresh rerun output: `behave-rerun.txt` (**pending**).
+- Coverage screenshot: `coverage_100.png`.
+- Behave historical output: `behave_after.txt`; fresh rerun: `behave-rerun.txt` (7 scenarios / 28 steps passed).
 - Other evidence: `characterization_on_legacy.txt`, `complexity_before.txt`, `complexity_after.txt`, `sibling_red.txt`, `sibling_green.txt`.
 - Root-level documentation: `git-log.txt`, `tdd-run-log.txt`, `smells.md`, `A1-answer.md`.
 
