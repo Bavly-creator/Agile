@@ -1,17 +1,24 @@
 # Lab 6 evidence
 
-## Verified text evidence
+## Coverage
 
-`pytest-coverage-verified.txt` records a fresh run against the submitted archive contents: 10 tests passed and `registration.py` reached 100% coverage.
+- `coverage_100.png`: coverage screenshot included with the submission.
+- `pytest-coverage-verified.txt`: records a fresh run against the submitted archive contents: 10 tests passed and `registration.py` reached 100% coverage.
+- `coverage_before.txt` and `coverage_after.txt`: before/after coverage reports.
 
-Behave was not freshly rerun in this environment because the package was unavailable. The supplied archive output records 7 scenarios and 28 steps passing; see the run log included with the submission.
+## Behave
 
-## Screenshot still pending
+`behave-rerun.txt` contains the fresh Behave output from the consolidated working copy:
 
-The original `coverage_100.png` from the submitted ZIP could not be restored to this repository in the current session. No replacement or fabricated screenshot has been added.
+- 1 feature passed
+- 7 scenarios passed
+- 28 steps passed
+- 0 failed and 0 skipped
 
-When the original image is available, upload it to:
+`behave_after.txt` is the earlier supplied run output retained for reference.
 
-`docs/lab6/evidence/coverage_100.png`
+## Other evidence
 
-Until then, the screenshot item remains outstanding for the LMS evidence package. The text report above documents the test result but is not a screenshot.
+- `characterization_on_legacy.txt`: characterization test output.
+- `complexity_before.txt` and `complexity_after.txt`: complexity measurements.
+- `sibling_red.txt` and `sibling_green.txt`: TDD red/green evidence for `SiblingPolicy`.
