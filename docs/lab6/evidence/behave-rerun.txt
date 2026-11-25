@@ -1,0 +1,53 @@
+USING RUNNER: behave.runner:Runner
+Feature: Course registration # features/registration.feature:1
+  As a student
+  I want to register for courses
+  So that I can build my timetable without breaking the rules
+  Feature: Course registration  # features/registration.feature:1
+
+  Scenario: Register within the limit                     # features/registration.feature:9
+    Given a student with ID "2023001"                     # features/steps/registration_steps.py:6
+    When the student registers for "SET312" worth 3 hours # features/steps/registration_steps.py:23
+    Then the student has 3 registered hours               # features/steps/registration_steps.py:39
+
+  Scenario: Refuse a course that breaks the 18-hour limit           # features/registration.feature:13
+    Given a student with ID "2023001"                               # features/steps/registration_steps.py:6
+    Given the student already has 15 registered hours               # features/steps/registration_steps.py:12
+    When the student registers for "SET472" worth 4 hours           # features/steps/registration_steps.py:23
+    Then the registration is refused with "credit-hour limit is 18" # features/steps/registration_steps.py:44
+    And the student has 15 registered hours                         # features/steps/registration_steps.py:39
+
+  Scenario: Refuse a duplicate course                          # features/registration.feature:19
+    Given a student with ID "2023001"                          # features/steps/registration_steps.py:6
+    Given the student is registered for "SET312" worth 3 hours # features/steps/registration_steps.py:18
+    When the student registers for "SET312" worth 3 hours      # features/steps/registration_steps.py:23
+    Then the registration is refused with "already registered" # features/steps/registration_steps.py:44
+
+  Scenario: Drop a registered course                           # features/registration.feature:24
+    Given a student with ID "2023001"                          # features/steps/registration_steps.py:6
+    Given the student is registered for "SET312" worth 3 hours # features/steps/registration_steps.py:18
+    When the student drops "SET312"                            # features/steps/registration_steps.py:31
+    Then the student has 0 registered hours                    # features/steps/registration_steps.py:39
+
+  Scenario Outline: Limit check for different loads -- @1.1   # features/registration.feature:36
+    Given a student with ID "2023001"                         # features/steps/registration_steps.py:6
+    Given the student already has 12 registered hours         # features/steps/registration_steps.py:12
+    When the student registers for "NEW101" worth 3 hours     # features/steps/registration_steps.py:23
+    Then the result is "accepted"                             # features/steps/registration_steps.py:49
+
+  Scenario Outline: Limit check for different loads -- @1.2   # features/registration.feature:37
+    Given a student with ID "2023001"                         # features/steps/registration_steps.py:6
+    Given the student already has 15 registered hours         # features/steps/registration_steps.py:12
+    When the student registers for "NEW101" worth 3 hours     # features/steps/registration_steps.py:23
+    Then the result is "accepted"                             # features/steps/registration_steps.py:49
+
+  Scenario Outline: Limit check for different loads -- @1.3   # features/registration.feature:38
+    Given a student with ID "2023001"                         # features/steps/registration_steps.py:6
+    Given the student already has 16 registered hours         # features/steps/registration_steps.py:12
+    When the student registers for "NEW101" worth 3 hours     # features/steps/registration_steps.py:23
+    Then the result is "refused"                              # features/steps/registration_steps.py:49
+
+1 feature passed, 0 failed, 0 skipped
+7 scenarios passed, 0 failed, 0 skipped
+28 steps passed, 0 failed, 0 skipped
+Took 0min 0.003s
